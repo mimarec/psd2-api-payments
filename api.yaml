@@ -42,16 +42,19 @@ paths:
         tags:
             - Payments
         parameters:
-            - in: header
-              name: Authorization
-              type: string
+            - name: body
+              in: body
+              description: Payment object along with the state of the payment and amount.
+              required: true
+              schema:
+                $ref: '#/definitions/paymentRequest'
         responses:
             201:
               description: Returns a payment object along with the state of the payment and sale. The response include a payment ID that uniquely identifies the transaction.
               schema:
                 type: array
                 items:
-                  $ref: '#/definitions/payment'
+                  $ref: '#/definitions/paymentResponse'
             400:
                 description: Bad Request
             401:

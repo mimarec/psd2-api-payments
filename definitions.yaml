@@ -1,10 +1,16 @@
-payment:
-    $ref: ./types/payment.yaml
+paymentRequest:
+    $ref: ./types/payment-request.yaml
+paymentResponse:
+    $ref: ./types/payment-response.yaml
 address:
-    $ref: ./core/address.yaml
+    $ref: ./core-models/address.yaml
 identityDocument:
-    $ref: ./core/identity-document.yaml
+    $ref: ./core-models/identity-document.yaml
 amount:
-    $ref: ./core/amount.yaml
+    $ref: ./core-models/amount.yaml
 payer:
-    $ref: ./core/payer.yaml
+    $ref: ./core-models/payer.yaml
+bank:
+    $ref: ./core-models/bank.yaml
+token:
+    $ref: ./core-models/token.yaml

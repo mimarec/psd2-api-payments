@@ -16,6 +16,8 @@ properties:
                     description: Description of what is being paid for.
     payer:
         $ref: '#/definitions/payer'
+    bank:
+        $ref: '#/definitions/bank'
     date:
         type: string
         format: date
@@ -52,3 +54,5 @@ properties:
                     name:
                         type: string
                         description: Name of period of time.
+    token:
+        $ref: '#/definitions/token'

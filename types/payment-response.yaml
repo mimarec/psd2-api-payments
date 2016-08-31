@@ -1,0 +1,41 @@
+type: object
+properties:
+    description:
+        type: string
+        description: This is the payment transaction description.
+    paymentId:
+        type: string
+        description: Paymen ID
+    createTime:
+        type: string
+        format: date-time
+        description: Time the payment was created.
+    updateTime:
+        type: string
+        format: date-time
+        description: Time the payment was last updated.
+    state:
+        type: string
+        enum: ["CONFIRM","PENDIND", "CANCELED"]
+    intent:
+        type: string
+        description: Payment intent. Must be set to sale for immediate payment, authorize to authorize a payment for capture later, or order to create an order.
+    transactions:
+        type: array
+        description: Transaction details
+        items:
+            type: object
+            properties:
+                amount:
+                    $ref: '#/definitions/amount'
+                description:
+                    type: string
+                    description: Description of what is being paid for.
+    payer:
+        $ref: '#/definitions/payer'
+    bank:
+        $ref: '#/definitions/bank'
+    date:
+        type: string
+        format: date-time
+        description: Date when wire transfer has been made. String based on ISO-8601 date format.
