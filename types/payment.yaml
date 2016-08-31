@@ -1,0 +1,54 @@
+type: object
+properties:
+    intent:
+        type: string
+        description: Payment intent. Must be set to sale for immediate payment, authorize to authorize a payment for capture later, or order to create an order.
+    transactions:
+        type: array
+        description: Transaction details
+        items:
+            type: object
+            properties:
+                amount:
+                    $ref: '#/definitions/amount'
+                description:
+                    type: string
+                    description: Description of what is being paid for.
+    payer:
+        $ref: '#/definitions/payer'
+    date:
+        type: string
+        format: date
+        description: Date when wire transfer has been made. String based on ISO-8601 date format.
+    urgentPayment:
+        type: boolean
+        description: Flag indicating whether this wire transfer is urgent. An ordinary transfer is usually available in the target account within the following 24 hours if both accounts are in the national territory, we can find the need for an urgent transfer from one account to another so that money is available in the same credit account on the same day when the transfer is made, which does not use ordinary compensation systems.
+    status:
+        type: object
+        description: Object that indicates the transfer status.
+        properties:
+            id:
+                type: string
+                enum: ["PENDING", "DONE", "CANCELED"]
+                description: Transfer status identifier.
+            name:
+                type: string
+                description: Transfer status description.
+    cancelationInterval:
+        type: object
+        description: Information related to the necessary time to cancel a transfer.
+        properties:
+            value:
+                type: number
+                description: Value of the necessary period of time to cancel a transfer.
+            period:
+                type: object
+                description: Defined period of time for a transfer.
+                properties:
+                    id:
+                        type: string
+                        enum: ["SECONDS", "MINUTES", "HOURS", "DAYS", "WEEKS", "MONTHS", "YEARS"]
+                        description: Identifier of period of time.
+                    name:
+                        type: string
+                        description: Name of period of time.

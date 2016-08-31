@@ -1,0 +1,10 @@
+payment:
+    $ref: ./types/payment.yaml
+address:
+    $ref: ./core/address.yaml
+identityDocument:
+    $ref: ./core/identity-document.yaml
+amount:
+    $ref: ./core/amount.yaml
+payer:
+    $ref: ./core/payer.yaml

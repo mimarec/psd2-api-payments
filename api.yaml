@@ -1,0 +1,62 @@
+# this is an example of the PSD2 Transaction API
+swagger: '2.0'
+info:
+  title: Payments
+  description: PSD2 Payments provides various payment-related operations through the /payment resource and related sub-resources.
+  version: "1.0.0"
+# the domain of the service
+host: api.bank.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /payments
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+definitions:
+    $ref: ./definitions.yaml
+security:
+  - bankAccessCode:
+    - owner
+securityDefinitions:
+  bankAccessCode:
+    type: oauth2
+    authorizationUrl: http://api.bank.com/oauth2_0
+    description: |
+      OAuth2 is a protocol that lets external apps request authorization to private
+      details in a user's Bank account without getting their password. This is
+      preferred over Basic Authentication because tokens can be limited to specific
+      types of data, and can be revoked by users at any time.
+    flow: implicit
+    scopes:
+      owner: Read/write access for payments.
+paths:
+  /payment:
+    post:
+        summary: Service for managing payments.
+        description: Provide a payment object that includes an intent, payer, and transactions.
+        tags:
+            - Payments
+        parameters:
+            - in: header
+              name: Authorization
+              type: string
+        responses:
+            201:
+              description: Returns a payment object along with the state of the payment and sale. The response include a payment ID that uniquely identifies the transaction.
+              schema:
+                type: array
+                items:
+                  $ref: '#/definitions/payment'
+            400:
+                description: Bad Request
+            401:
+                description: Unauthorized
+            403:
+                description: Forbidden
+            500:
+                description: Server Error

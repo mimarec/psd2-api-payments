@@ -1,0 +1,38 @@
+type: object
+description: Information related to the destination account.
+properties:
+    number:
+        type: string
+        description: Information related to the destination account.
+    numberType:
+        type: object
+        description: Type of account number.
+        properties:
+            id:
+                type: string
+                description: Identifier associated to account number.
+                enum: ["CCC", "IBAN", "SWIFT", "CLABE", "SPEI"]
+            name:
+                type: string
+                description: Name associated to account number.
+    accountType:
+        type: object
+        description: Type of account.
+        properties:
+            id:
+                type: string
+                description: Identifier associated to account type.
+                enum: ["CREDIT", "DEBIT"]
+            name:
+                type: string
+                description: Name associated to account type.
+    bank:
+        type: object
+        description: Bank information associated with the destination account.
+        properties:
+            id:
+                type: string
+                description: Identifier associated to the bank of the destination account.
+            name:
+                type: string
+                description: Name associated to the banking entity of the destination account.
